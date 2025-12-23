@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Futuristic Dark Theme */
+    --bg-primary: #000000;
+    --bg-secondary: #0F172A;
+    --bg-card: #111827;
+
+    /* Neon Accents */
+    --accent-primary: #22D3EE;
+    --accent-secondary: #A855F7;
+    --accent-hover: #67E8F9;
+
+    /* Text */
+    --text-primary: #E5E7EB;
+    --text-muted: #9CA3AF;
+    --text-heading: #FFFFFF;
+
+    /* Borders */
+    --border-default: rgba(255, 255, 255, 0.06);
+    --border-accent: #22D3EE;
+  }
+
+  body {
+    @apply bg-background-primary text-text-primary antialiased;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Premium Glassmorphism */
+  .glass {
+    @apply backdrop-blur-xl border border-border;
+    background: rgba(17, 24, 39, 0.8);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl rounded-2xl border;
+    background: rgba(17, 24, 39, 0.7);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-light {
+    @apply backdrop-blur-md border;
+    background: rgba(34, 211, 238, 0.05);
+    border-color: rgba(34, 211, 238, 0.2);
+  }
+
+  /* Premium Cards */
+  .premium-card {
+    @apply bg-background-card rounded-xl shadow-soft transition-all duration-500;
+    background-color: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .premium-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+  }
+
+  /* Neon Buttons */
+  .neon-button {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background-color: var(--accent-primary);
+    color: #000000;
+  }
+
+  .neon-button:hover {
+    @apply shadow-glow scale-105;
+    background-color: var(--accent-hover);
+  }
+
+  /* Standard Premium Buttons */
+  .premium-button {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105;
+  }
+
+  .premium-button-filled {
+    @apply premium-button;
+    background-color: var(--accent-primary);
+    color: #000000;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.2);
+  }
+
+  .premium-button-filled:hover {
+    @apply shadow-glow;
+    background-color: var(--accent-hover);
+  }
+
+  .premium-button-outline {
+    @apply premium-button border-2;
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  .premium-button-outline:hover {
+    background-color: var(--accent-primary);
+    color: #000000;
+    @apply shadow-glow;
+  }
+
+  /* Typography */
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-4;
+    color: var(--text-heading);
+  }
+
+  .section-subtitle {
+    @apply text-xl max-w-2xl mx-auto;
+    color: var(--text-muted);
+  }
+
+  /* Neon Glow Effects */
+  .glow-effect {
+    @apply transition-all duration-300;
+  }
+
+  .glow-effect:hover {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
+  }
+
+  /* Premium Input Styles */
+  .premium-input {
+    @apply w-full px-4 py-3 rounded-lg transition-all duration-300;
+    background-color: var(--bg-card);
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+  }
+
+  .premium-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.1);
+  }
+
+  /* Page Transition */
+  .page-transition {
+    @apply animate-fade-in;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar - Neon Theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #22D3EE;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #67E8F9;
+}
+
+/* Selection - Neon Theme */
+::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: #FFFFFF;
+}
+
+/* Focus styles - Neon Theme */
+:focus-visible {
+  outline: 2px solid #22D3EE;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.2);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

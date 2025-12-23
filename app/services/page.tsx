@@ -1,395 +1,438 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+import Link from "next/link";
 import {
-  Search,
-  Lightbulb,
+  Code2,
+  Smartphone,
   Palette,
-  Code,
-  Rocket,
+  Cloud,
+  Server,
   ArrowRight,
   CheckCircle2,
   Sparkles,
-  LucideIcon
+  Users,
+  Award,
+  TrendingUp,
+  Zap,
+  Shield,
+  Target
 } from "lucide-react";
 
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// ============================================
+// Premium Animation Variants - Production Ready
+// Implements Linear/Notion-quality staggered reveals
+// ============================================
+const containerVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // 150ms delay between children  
+      delayChildren: 0.1
+    }
+  }
+};
 
-interface Service {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  features: string[];
-  color: string;
-}
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40 // Starts 40px below final position
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6, // Smooth 600ms animation
+      ease: [0.22, 1, 0.36, 1] // Premium cubic-bezier easing (no bounce)
+    }
+  }
+};
 
-const services: Service[] = [
+
+const services = [
   {
-    icon: Search,
-    title: "Requirement Analysis",
-    description: "Deep dive into your business needs, understanding goals, challenges, and target audience to craft the perfect solution strategy.",
-    features: ["Business Analysis", "Market Research", "Stakeholder Interviews", "Goal Definition"],
-    color: "from-blue-500 to-cyan-500"
+    icon: Code2,
+    title: "Web Development",
+    description: "Build powerful, scalable web applications with modern frameworks and cutting-edge technologies.",
+    deliverables: [
+      "Responsive web applications",
+      "Progressive Web Apps (PWA)",
+      "E-commerce platforms",
+      "Custom CMS solutions"
+    ],
+    gradient: "from-blue-500 to-cyan-500",
+    bgColor: "bg-blue-50"
   },
   {
-    icon: Lightbulb,
-    title: "Research & Planning",
-    description: "Strategic planning and roadmap creation with competitive analysis, technology selection, and comprehensive project timeline.",
-    features: ["Technology Stack", "Architecture Design", "Timeline Planning", "Resource Allocation"],
-    color: "from-purple-500 to-pink-500"
+    icon: Smartphone,
+    title: "Mobile App Development",
+    description: "Native and cross-platform mobile applications that deliver exceptional user experiences.",
+    deliverables: [
+      "iOS & Android apps",
+      "React Native solutions",
+      "Flutter applications",
+      "App Store deployment"
+    ],
+    gradient: "from-purple-500 to-pink-500",
+    bgColor: "bg-purple-50"
   },
   {
     icon: Palette,
     title: "UI/UX Design",
-    description: "Creating stunning, user-centered designs with intuitive interfaces that deliver exceptional user experiences and brand consistency.",
-    features: ["Wireframing", "Prototyping", "User Testing", "Brand Integration"],
-    color: "from-pink-500 to-rose-500"
+    description: "User-centered design that combines aesthetics with functionality for intuitive interfaces.",
+    deliverables: [
+      "User research & testing",
+      "Wireframes & prototypes",
+      "Design systems",
+      "Brand identity"
+    ],
+    gradient: "from-pink-500 to-rose-500",
+    bgColor: "bg-pink-50"
   },
   {
-    icon: Code,
-    title: "Development",
-    description: "Building robust, scalable solutions using cutting-edge technologies, clean code practices, and agile methodologies.",
-    features: ["Frontend Development", "Backend Systems", "API Integration", "Quality Assurance"],
-    color: "from-orange-500 to-amber-500"
+    icon: Cloud,
+    title: "SaaS Development",
+    description: "End-to-end SaaS product development from concept to launch with scalable architecture.",
+    deliverables: [
+      "Multi-tenant architecture",
+      "Subscription management",
+      "API development",
+      "Cloud infrastructure"
+    ],
+    gradient: "from-green-500 to-emerald-500",
+    bgColor: "bg-green-50"
   },
   {
-    icon: Rocket,
-    title: "Deployment",
-    description: "Seamless launch with continuous monitoring, optimization, and ongoing support to ensure peak performance and reliability.",
-    features: ["Cloud Deployment", "Performance Optimization", "Security Hardening", "Continuous Support"],
-    color: "from-green-500 to-emerald-500"
+    icon: Server,
+    title: "Cloud & API Services",
+    description: "Robust backend systems, APIs, and cloud infrastructure for enterprise-grade applications.",
+    deliverables: [
+      "RESTful & GraphQL APIs",
+      "Microservices architecture",
+      "Cloud deployment",
+      "DevOps automation"
+    ],
+    gradient: "from-orange-500 to-amber-500",
+    bgColor: "bg-orange-50"
+  }
+];
+
+const techStack = {
+  frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+  backend: ["Node.js", "Python", "PostgreSQL", "MongoDB"],
+  mobile: ["React Native", "Flutter", "Swift", "Kotlin"],
+  cloud: ["AWS", "Google Cloud", "Docker", "Kubernetes"],
+  design: ["Figma", "Adobe XD", "Framer", "Sketch"]
+};
+
+const whyChooseUs = [
+  {
+    icon: Users,
+    title: "Expert Team",
+    description: "Seasoned developers, designers, and project managers with 10+ years of experience"
+  },
+  {
+    icon: Award,
+    title: "Proven Track Record",
+    description: "500+ successful projects delivered across 15+ industries worldwide"
+  },
+  {
+    icon: TrendingUp,
+    title: "Agile Methodology",
+    description: "Fast iterations, continuous delivery, and transparent communication throughout"
   }
 ];
 
 export default function ServicesPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-
-  // Hero animations
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      if (prefersReducedMotion) {
-        gsap.set([titleRef.current, subtitleRef.current], { opacity: 1, y: 0 });
-        return;
-      }
-
-      gsap.from(titleRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: "power3.out",
-        delay: 0.2
-      });
-
-      gsap.from(subtitleRef.current, {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        ease: "power3.out",
-        delay: 0.4
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background-primary">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-32 pb-20 bg-background-primary overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-b from-background-secondary to-white overflow-hidden">
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background-card border border-border text-accent-primary text-sm font-medium mb-6 shadow-soft">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/5 border border-brand-primary/20 text-brand-primary text-sm font-medium mb-6 shadow-soft"
+            >
               <Sparkles className="w-4 h-4" />
-              Our Services
-            </div>
+              Enterprise-Grade Services
+            </motion.div>
 
-            <h1 ref={titleRef} className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
-              How We Deliver{" "}
-              <span className="text-accent-primary">
-                Excellence
-              </span>
-            </h1>
-            <p ref={subtitleRef} className="text-xl md:text-2xl text-text-muted leading-relaxed">
-              A proven process that transforms your vision into reality through strategic planning,
-              expert execution, and continuous innovation.
-            </p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-heading"
+            >
+              Transform Your Vision Into{" "}
+              <span className="text-brand-primary">Reality</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl text-text-muted leading-relaxed mb-12"
+            >
+              From concept to deployment, we deliver premium digital solutions that drive business growth and user engagement.
+            </motion.p>
+
+            {/* Trust Badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-wrap justify-center gap-8 mb-12"
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-brand-primary" />
+                <span className="text-text-muted font-medium">500+ Projects Delivered</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-brand-primary" />
+                <span className="text-text-muted font-medium">50+ Happy Clients</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-brand-primary" />
+                <span className="text-text-muted font-medium">99% Satisfaction Rate</span>
+              </div>
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group px-8 py-4 bg-brand-primary text-white rounded-xl font-semibold text-lg shadow-premium hover:shadow-premium-hover hover:bg-brand-hover transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  Get Free Consultation
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </Link>
+
+              <Link href="/portfolio">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-transparent text-brand-primary rounded-xl font-semibold text-lg border-2 border-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-300"
+                >
+                  View Portfolio
+                </motion.button>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Premium Service Cards Section with GSAP Scroll Animation */}
-      <ServiceCardsSection services={services} />
+      {/* Services Grid */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="section-title">
+              Our Core <span className="text-brand-primary">Services</span>
+            </h2>
+            <p className="section-subtitle">
+              Comprehensive solutions tailored to your business needs
+            </p>
+          </motion.div>
 
-      {/* Timeline Section */}
-      <TimelineSection services={services} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.45,
+                  delay: index * 0.12,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="group premium-card p-8 border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-all duration-300"
+              >
+                {/* Icon */}
+                <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.gradient} p-0.5 mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
+                    <service.icon className="w-10 h-10 text-brand-primary" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <h3 className="text-2xl font-bold mb-3 text-text-heading group-hover:text-brand-primary transition-colors">
+                  {service.title}
+                </h3>
+
+                <p className="text-text-muted leading-relaxed mb-6">
+                  {service.description}
+                </p>
+
+                {/* Deliverables */}
+                <div className="space-y-2 mb-6">
+                  {service.deliverables.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-brand-primary flex-shrink-0" />
+                      <span className="text-sm text-text-muted">{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Learn More Link */}
+                <Link href="/contact" className="inline-flex items-center gap-2 text-brand-primary font-semibold group-hover:gap-3 transition-all">
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Stack */}
+      <section className="py-24 bg-background-secondary">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="section-title">
+              Technologies We <span className="text-brand-primary">Master</span>
+            </h2>
+            <p className="section-subtitle">
+              Cutting-edge tools and frameworks for modern development
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {Object.entries(techStack).map(([category, technologies], catIndex) => (
+              <motion.div
+                key={category}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.45,
+                  delay: catIndex * 0.12,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                className="bg-white rounded-2xl p-6 shadow-soft border border-border"
+              >
+                <h3 className="text-lg font-bold mb-4 text-text-heading capitalize">
+                  {category}
+                </h3>
+                <div className="space-y-2">
+                  {technologies.map((tech, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-primary" />
+                      <span className="text-sm text-text-muted">{tech}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="section-title">
+              Why Choose <span className="text-brand-primary">QUBESO</span>
+            </h2>
+            <p className="section-subtitle">
+              Partner with a team that's committed to your success
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {whyChooseUs.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.45,
+                  delay: index * 0.12,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="group text-center premium-card p-8 border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-all duration-300"
+              >
+                <div className="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-primary group-hover:scale-110 transition-all duration-300">
+                  <item.icon className="w-8 h-8 text-brand-primary group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-text-heading group-hover:text-brand-primary transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-text-muted leading-relaxed">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-brand-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
+      <section className="py-24 bg-gradient-to-br from-brand-primary to-brand-hover relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto"
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Ready to Start Your Project?
+              Ready to Build Your Next Project?
             </h2>
             <p className="text-xl mb-8 text-white/90">
-              Let's discuss how we can help bring your vision to life
+              Get a free consultation and project estimate from our expert team
             </p>
-            <button className="group px-8 py-4 bg-white text-brand-primary rounded-full font-semibold text-lg shadow-strong hover:shadow-glow transition-all duration-300 hover:scale-105">
-              Schedule a Consultation
-              <ArrowRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="group px-8 py-4 bg-white text-brand-primary rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-2"
+              >
+                Schedule Free Consultation
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>
   );
 }
-
-// Premium Service Cards Component with GSAP Scroll Animation
-function ServiceCardsSection({ services }: { services: Service[] }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      if (prefersReducedMotion) {
-        gsap.set(cardsRef.current, { opacity: 1, y: 0, scale: 1 });
-        return;
-      }
-
-      // Set initial state
-      gsap.set(cardsRef.current, {
-        opacity: 0,
-        y: 60,
-        scale: 0.96
-      });
-
-      // Create scroll-triggered animation
-      gsap.to(cardsRef.current, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const addToRefs = (el: HTMLDivElement | null) => {
-    if (el && !cardsRef.current.includes(el)) {
-      cardsRef.current.push(el);
-    }
-  };
-
-  return (
-    <section ref={sectionRef} className="py-24 bg-brand-secondary">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="section-title">
-            Our Comprehensive Services
-          </h2>
-          <p className="section-subtitle">
-            End-to-end solutions tailored to transform your business
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              ref={addToRefs}
-              className="group premium-card p-8 border-2 border-border hover:border-accent-primary/20 hover:scale-[1.03] cursor-pointer"
-            >
-              {/* Icon */}
-              <div className="w-16 h-16 bg-gradient-to-br from-accent-primary/20 to-accent-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-medium transition-shadow duration-300">
-                <service.icon className="w-8 h-8 text-accent-primary" />
-              </div>
-
-              {/* Title */}
-              <h3 className="text-2xl font-bold mb-3 text-text-primary group-hover:text-accent-primary transition-colors duration-300">
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-text-muted leading-relaxed mb-4">
-                {service.description}
-              </p>
-
-              {/* Features */}
-              <ul className="space-y-2">
-                {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-2 text-sm text-text-primary">
-                    <CheckCircle2 className="w-4 h-4 text-accent-primary flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Decorative gradient */}
-              <div className={`absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br ${service.color} rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Timeline Section Component with Sticky Stacking Animation
-function TimelineSection({ services }: { services: Service[] }) {
-  const timelineRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
-
-  useEffect(() => {
-    const cards = cardsRef.current.filter(Boolean);
-    if (!cards.length) return;
-
-    const ctx = gsap.context(() => {
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      if (prefersReducedMotion) {
-        cards.forEach(card => {
-          gsap.set(card, { opacity: 1, y: 0, scale: 1 });
-        });
-        return;
-      }
-
-      // Animate each card with stagger
-      cards.forEach((card, index) => {
-        gsap.fromTo(card,
-          {
-            opacity: 0,
-            y: 100,
-            scale: 0.9
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              end: "top 20%",
-              toggleActions: "play none none reverse"
-            }
-          }
-        );
-      });
-    }, timelineRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const addToCardsRefs = (el: HTMLDivElement | null) => {
-    if (el && !cardsRef.current.includes(el)) {
-      cardsRef.current.push(el);
-    }
-  };
-
-  return (
-    <section ref={timelineRef} className="relative py-24 bg-background-primary">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
-          <h2 className="section-title">
-            Our Development Process
-          </h2>
-          <p className="section-subtitle">
-            A systematic approach to deliver exceptional results
-          </p>
-        </div>
-
-        {/* Sticky Stacking Cards */}
-        <div className="relative max-w-3xl mx-auto">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              ref={addToCardsRefs}
-              className="sticky mb-8 transition-all duration-500"
-              style={{
-                top: `${80 + index * 60}px`,
-                zIndex: services.length - index,
-              }}
-            >
-              <div className="premium-card p-8 md:p-10 border-2 border-border hover:border-brand-primary/30 transition-all duration-500 group will-change-transform">
-                {/* Step Number Badge */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center shadow-medium group-hover:shadow-glow transition-shadow duration-300">
-                  <span className="text-white font-bold text-lg">0{index + 1}</span>
-                </div>
-
-                <div className="flex items-start gap-6">
-                  {/* Icon */}
-                  <div className="flex-shrink-0">
-                    <div className="w-20 h-20 bg-gradient-to-br from-brand-primary/20 to-brand-primary/10 rounded-2xl flex items-center justify-center group-hover:shadow-medium transition-shadow duration-300">
-                      <service.icon className="w-10 h-10 text-brand-primary" />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-3 text-text-primary group-hover:text-brand-primary transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-text-muted leading-relaxed mb-4">
-                      {service.description}
-                    </p>
-
-                    {/* Features */}
-                    <div className="flex flex-wrap gap-2">
-                      {service.features.map((feature, idx) => (
-                        <span
-                          key={idx}
-                          className="inline-flex items-center gap-1 px-3 py-1 bg-background-primary rounded-full text-sm text-text-primary"
-                        >
-                          <CheckCircle2 className="w-3 h-3 text-brand-primary" />
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Decorative line connecting cards */}
-                {index < services.length - 1 && (
-                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gradient-to-b from-brand-primary/50 to-transparent" />
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Spacer to allow last card to stick properly */}
-        <div className="h-96" />
-      </div>
-    </section>
-  );
-}
-

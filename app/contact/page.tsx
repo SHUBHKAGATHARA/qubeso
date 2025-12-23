@@ -32,28 +32,54 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: ""
+    try {
+      // Submit to Web3Forms API
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "cf358a2e-1316-4b58-bc26-bde7b4aae4fc",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
-      setIsSubmitted(false);
-    }, 3000);
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            subject: "",
+            message: ""
+          });
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        setError("Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -109,7 +135,7 @@ export default function ContactPage() {
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
               Let's Start a{" "}
-              <span className="text-accent-primary">
+              <span className="text-brand-primary">
                 Conversation
               </span>
             </h1>
@@ -171,12 +197,16 @@ export default function ContactPage() {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ x: 10 }}
-                  className="group premium-card p-6 border-2 border-border hover:border-accent-primary/20 transition-all"
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.45,
+                    delay: index * 0.12,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  whileHover={{ x: 6, scale: 1.02 }}
+                  className="group premium-card p-6 border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <motion.div
@@ -258,7 +288,7 @@ export default function ContactPage() {
                         onFocus={() => handleFocus("email")}
                         onBlur={() => handleBlur("email")}
                         required
-                        className="w-full px-4 py-3 border-2 border-border rounded-xl focus:border-accent-primary focus:outline-none transition-colors bg-white"
+                        className="w-full px-4 py-3 border-2 border-border rounded-xl focus:border-brand-primary focus:outline-none transition-colors bg-white"
                       />
                     </div>
                   </div>
@@ -343,8 +373,8 @@ export default function ContactPage() {
                     whileHover={{ scale: isSubmitted ? 1 : 1.02 }}
                     whileTap={{ scale: isSubmitted ? 1 : 0.98 }}
                     className={`w-full px-8 py-4 rounded-xl font-semibold text-lg shadow-xl transition-all flex items-center justify-center gap-2 ${isSubmitted
-                        ? "bg-green-500 text-white"
-                        : "bg-accent-primary text-white hover:shadow-glow"
+                      ? "bg-green-500 text-white"
+                      : "bg-accent-primary text-white hover:shadow-glow"
                       }`}
                   >
                     {isSubmitting ? (
@@ -368,6 +398,17 @@ export default function ContactPage() {
                       </>
                     )}
                   </motion.button>
+
+                  {/* Error Message */}
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-4 p-4 bg-red-500/10 border border-red-500/50 rounded-lg text-red-500 text-center"
+                    >
+                      {error}
+                    </motion.div>
+                  )}
                 </form>
               </motion.div>
             </div>

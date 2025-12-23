@@ -118,10 +118,10 @@ export default function BlogPage() {
               <Sparkles className="w-4 h-4" />
               Our Blog
             </motion.div>
-            
+
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
               Insights &{" "}
-              <span className="text-accent-primary">
+              <span className="text-brand-primary">
                 Resources
               </span>
             </h1>
@@ -195,7 +195,7 @@ export default function BlogPage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-accent-primary rounded-xl font-semibold shadow-xl hover:shadow-2xl transition-shadow"
+                className="px-8 py-4 bg-white text-brand-primary rounded-xl font-semibold shadow-xl hover:shadow-2xl transition-shadow"
               >
                 Subscribe
               </motion.button>
@@ -210,17 +210,21 @@ export default function BlogPage() {
 function FeaturedBlogCard({ post }: { post: any }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -5 }}
-      className="group relative premium-card overflow-hidden border-2 border-border hover:border-accent-primary/20"
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.45,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      whileHover={{ y: -6, scale: 1.01 }}
+      className="group relative premium-card overflow-hidden border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-all duration-300"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Image */}
         <div className="relative h-80 lg:h-auto bg-gradient-to-br from-primary-bg to-primary-muted/20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-accent-primary/5" />
-          
+
           {/* Category Badge */}
           <div className="absolute top-6 left-6 z-10">
             <span className="px-4 py-2 rounded-full bg-accent-primary text-white font-semibold shadow-soft">
@@ -282,17 +286,21 @@ function FeaturedBlogCard({ post }: { post: any }) {
 function BlogCard({ post, index }: { post: any; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -10 }}
-      className="group relative premium-card overflow-hidden border-2 border-border hover:border-accent-primary/20"
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.45,
+        delay: index * 0.12,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      className="group relative premium-card overflow-hidden border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-all duration-300"
     >
       {/* Image */}
       <div className="relative h-56 bg-gradient-to-br from-primary-bg to-primary-muted/20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-accent-primary/5" />
-        
+
         {/* Category Badge */}
         <div className="absolute top-4 left-4 z-10">
           <span className="px-3 py-1 rounded-full bg-accent-primary text-white text-sm font-semibold shadow-soft">

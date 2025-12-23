@@ -4,24 +4,26 @@
 
 @layer base {
   :root {
-    /* Futuristic Dark Theme */
-    --bg-primary: #000000;
-    --bg-secondary: #0F172A;
-    --bg-card: #111827;
+    /* Premium Light Theme */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F9FAFB;
+    --bg-card: #FFFFFF;
 
-    /* Neon Accents */
-    --accent-primary: #22D3EE;
-    --accent-secondary: #A855F7;
-    --accent-hover: #67E8F9;
+    /* Brand Colors */
+    --brand-primary: #2B4593;
+    --brand-secondary: #E6E2C5;
+    --brand-hover: #1E3270;
+    --brand-light: #3D5AB8;
 
     /* Text */
-    --text-primary: #E5E7EB;
-    --text-muted: #9CA3AF;
-    --text-heading: #FFFFFF;
+    --text-primary: #1F2937;
+    --text-muted: #6B7280;
+    --text-heading: #111827;
 
     /* Borders */
-    --border-default: rgba(255, 255, 255, 0.06);
-    --border-accent: #22D3EE;
+    --border-default: #E5E7EB;
+    --border-light: #F3F4F6;
+    --border-accent: #2B4593;
   }
 
   body {
@@ -40,78 +42,64 @@
     text-wrap: balance;
   }
 
-  /* Premium Glassmorphism */
+  /* Premium Glassmorphism - Subtle Light Version */
   .glass {
-    @apply backdrop-blur-xl border border-border;
-    background: rgba(17, 24, 39, 0.8);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    @apply backdrop-blur-md border border-border;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
 
   .glass-card {
-    @apply backdrop-blur-xl rounded-2xl border;
-    background: rgba(17, 24, 39, 0.7);
-    border-color: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    @apply backdrop-blur-md rounded-2xl border;
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--border-default);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
 
   .glass-light {
-    @apply backdrop-blur-md border;
-    background: rgba(34, 211, 238, 0.05);
-    border-color: rgba(34, 211, 238, 0.2);
+    @apply backdrop-blur-sm border;
+    background: rgba(230, 226, 197, 0.1);
+    border-color: rgba(43, 69, 147, 0.1);
   }
 
   /* Premium Cards */
   .premium-card {
-    @apply bg-background-card rounded-xl shadow-soft transition-all duration-500;
+    @apply bg-background-card rounded-2xl shadow-soft transition-all duration-300 border;
     background-color: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-color: var(--border-default);
   }
 
   .premium-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(43, 69, 147, 0.18);
+    border-color: var(--brand-primary);
   }
 
-  /* Neon Buttons */
-  .neon-button {
+  /* Premium Buttons */
+  .btn-primary {
     @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
-    background-color: var(--accent-primary);
-    color: #000000;
+    background-color: var(--brand-primary);
+    color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(43, 69, 147, 0.2);
   }
 
-  .neon-button:hover {
-    @apply shadow-glow scale-105;
-    background-color: var(--accent-hover);
+  .btn-primary:hover {
+    background-color: var(--brand-hover);
+    box-shadow: 0 6px 12px rgba(43, 69, 147, 0.3);
+    transform: translateY(-1px);
   }
 
-  /* Standard Premium Buttons */
-  .premium-button {
-    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105;
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 border-2;
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+    background: transparent;
   }
 
-  .premium-button-filled {
-    @apply premium-button;
-    background-color: var(--accent-primary);
-    color: #000000;
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.2);
-  }
-
-  .premium-button-filled:hover {
-    @apply shadow-glow;
-    background-color: var(--accent-hover);
-  }
-
-  .premium-button-outline {
-    @apply premium-button border-2;
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
-  }
-
-  .premium-button-outline:hover {
-    background-color: var(--accent-primary);
-    color: #000000;
-    @apply shadow-glow;
+  .btn-secondary:hover {
+    background-color: var(--brand-primary);
+    color: #FFFFFF;
+    transform: translateY(-1px);
   }
 
   /* Typography */
@@ -125,32 +113,42 @@
     color: var(--text-muted);
   }
 
-  /* Neon Glow Effects */
-  .glow-effect {
+  /* Subtle Hover Effects */
+  .hover-lift {
     @apply transition-all duration-300;
   }
 
-  .glow-effect:hover {
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(43, 69, 147, 0.15);
   }
 
   /* Premium Input Styles */
   .premium-input {
-    @apply w-full px-4 py-3 rounded-lg transition-all duration-300;
+    @apply w-full px-4 py-3 rounded-lg transition-all duration-300 border-2;
     background-color: var(--bg-card);
-    border: 2px solid rgba(255, 255, 255, 0.06);
+    border-color: var(--border-default);
     color: var(--text-primary);
   }
 
   .premium-input:focus {
     outline: none;
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.1);
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 4px rgba(43, 69, 147, 0.1);
   }
 
   /* Page Transition */
   .page-transition {
     @apply animate-fade-in;
+  }
+
+  /* Brand Background Variants */
+  .bg-brand-gradient {
+    background: linear-gradient(135deg, #2B4593 0%, #1E3270 100%);
+  }
+
+  .bg-cream-gradient {
+    background: linear-gradient(135deg, #E6E2C5 0%, #F5F3E8 100%);
   }
 }
 
@@ -159,35 +157,35 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar - Neon Theme */
+/* Custom scrollbar - Premium Theme */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #F9FAFB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #22D3EE;
+  background: #2B4593;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #67E8F9;
+  background: #1E3270;
 }
 
-/* Selection - Neon Theme */
+/* Selection - Premium Theme */
 ::selection {
-  background: rgba(34, 211, 238, 0.3);
-  color: #FFFFFF;
+  background: rgba(43, 69, 147, 0.2);
+  color: #111827;
 }
 
-/* Focus styles - Neon Theme */
+/* Focus styles - Premium Theme */
 :focus-visible {
-  outline: 2px solid #22D3EE;
+  outline: 2px solid #2B4593;
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.2);
+  box-shadow: 0 0 0 4px rgba(43, 69, 147, 0.15);
 }
 
 /* Reduced motion */

@@ -2,6 +2,7 @@
 
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import {
   Target,
   Eye,
@@ -50,9 +51,9 @@ export default function AboutPage() {
               About Us
             </motion.div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-heading">
               Innovating the{" "}
-              <span className="text-accent-primary">
+              <span className="text-brand-primary">
                 Digital Future
               </span>
             </h1>
@@ -65,7 +66,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-brand-secondary">
+      <section className="py-20 bg-background-secondary">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatCard
@@ -195,7 +196,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 bg-brand-secondary">
+      <section className="py-24 bg-background-secondary">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -205,7 +206,7 @@ export default function AboutPage() {
           >
             <h2 className="section-title">
               Why Choose{" "}
-              <span className="text-accent-primary">
+              <span className="text-brand-primary">
                 QUBESO TECH
               </span>
             </h2>
@@ -255,12 +256,16 @@ export default function AboutPage() {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="group premium-card p-8 border-2 border-border hover:border-accent-primary/20 transition-all"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.45,
+                  delay: index * 0.12,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="group premium-card p-8 border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-all duration-300"
               >
                 <motion.div
                   whileHover={{ rotate: 360 }}
@@ -282,8 +287,8 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-brand-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
+      <section className="py-24 bg-gradient-to-br from-brand-primary to-brand-hover relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -294,16 +299,18 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               Let's Build Something Great Together
             </h2>
-            <p className="text-xl mb-8 text-white/80">
+            <p className="text-xl mb-8 text-white/90">
               Join the growing list of businesses that trust QUBESO TECH for their digital needs
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 bg-white text-brand-primary rounded-full font-semibold text-lg shadow-strong hover:shadow-glow transition-all duration-300"
-            >
-              Get in Touch
-            </motion.button>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 bg-white text-brand-primary rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+              >
+                Get in Touch
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -352,12 +359,15 @@ function StatCard({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ y: -10, scale: 1.05 }}
-      className="group relative premium-card p-8 border-2 border-border hover:border-accent-primary/20 overflow-hidden"
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{
+        duration: 0.45,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      className="group relative premium-card p-8 border-2 border-border hover:border-brand-primary hover:shadow-premium-hover overflow-hidden transition-all duration-300"
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-accent-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />

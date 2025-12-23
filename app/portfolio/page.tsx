@@ -154,7 +154,7 @@ export default function PortfolioPage() {
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
               Our Latest{" "}
-              <span className="text-accent-primary">
+              <span className="text-brand-primary">
                 Projects
               </span>
             </h1>
@@ -180,8 +180,8 @@ export default function PortfolioPage() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${selectedCategory === category
-                    ? "bg-brand-primary text-white shadow-medium"
-                    : "bg-background-primary text-text-primary hover:bg-brand-primary/10 hover:text-brand-primary"
+                  ? "bg-brand-primary text-white shadow-medium"
+                  : "bg-background-primary text-text-primary hover:bg-brand-primary/10 hover:text-brand-primary"
                   }`}
               >
                 {category}
@@ -234,7 +234,7 @@ export default function PortfolioPage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-accent-primary rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-shadow"
+              className="px-8 py-4 bg-white text-brand-primary rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-shadow"
             >
               Start Your Project
             </motion.button>
@@ -249,12 +249,17 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
       exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      whileHover={{ y: -10 }}
-      className="group relative premium-card overflow-hidden border-2 border-border hover:border-accent-primary/20"
+      transition={{
+        duration: 0.45,
+        delay: (index % 9) * 0.12,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      className="group relative premium-card overflow-hidden border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-shadow duration-300"
     >
       {/* Image Container */}
       <div className="relative h-64 bg-gradient-to-br from-primary-bg to-primary-muted/20 overflow-hidden">

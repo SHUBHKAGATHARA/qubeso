@@ -121,28 +121,34 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center mb-16"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background-card border border-border text-accent-primary text-sm font-medium mb-6 shadow-soft"
-            >
-              <Sparkles className="w-4 h-4" />
-              Get In Touch
-            </motion.div>
-
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
-              Let's Start a{" "}
-              <span className="text-brand-primary">
-                Conversation
-              </span>
+              Get In <span className="text-brand-primary">Touch</span>
             </h1>
-            <p className="text-xl md:text-2xl text-text-muted leading-relaxed">
-              Have a project in mind? We'd love to hear from you.
-              Send us a message and we'll respond as soon as possible.
+            <p className="text-xl md:text-2xl text-text-muted max-w-2xl mx-auto">
+              Have a project in mind? We'd love to hear from you. Let's discuss how we can help bring your vision to life.
             </p>
+
+            {/* Support Illustration */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-12 max-w-md mx-auto"
+            >
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-br from-brand-primary/10 to-brand-hover/10 rounded-3xl blur-2xl" />
+                <Image
+                  src="/contact-hero.png"
+                  alt="Customer support illustration"
+                  width={400}
+                  height={300}
+                  className="relative w-full h-auto"
+                />
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

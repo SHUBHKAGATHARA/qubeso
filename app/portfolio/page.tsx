@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ExternalLink, Github, Sparkles } from "lucide-react";
-import Image from "next/image";
+import { ExternalLink, Briefcase, Scale, Dumbbell, Scissors, User, ShoppingBag, Sparkles } from "lucide-react";
 
 const categories = ["All", "Business", "E-Commerce", "Portfolio", "Fitness"];
 
@@ -13,7 +12,7 @@ const projects = [
     title: "Rameshwara Agro Dhrol",
     category: "Business",
     description: "Professional agriculture business website showcasing products, services, and company information with modern design.",
-    image: "/placeholder-1.jpg",
+    icon: Briefcase,
     tags: ["Next.js", "React", "Tailwind CSS"],
     color: "from-green-500 to-emerald-500",
     link: "https://rameshwaragrodhrol.vercel.app/",
@@ -24,7 +23,7 @@ const projects = [
     title: "KB Kagathara Advocate",
     category: "Business",
     description: "Professional law firm website with service listings, attorney information, and client contact system.",
-    image: "/placeholder-2.jpg",
+    icon: Scale,
     tags: ["Next.js", "TypeScript", "Framer Motion"],
     color: "from-blue-500 to-cyan-500",
     link: "https://kbkagathara-advocate.vercel.app/",
@@ -35,7 +34,7 @@ const projects = [
     title: "Hustle for Muscle",
     category: "Fitness",
     description: "Modern fitness center website featuring workout programs, trainer profiles, and membership information.",
-    image: "/placeholder-3.jpg",
+    icon: Dumbbell,
     tags: ["React", "Next.js", "CSS3"],
     color: "from-orange-500 to-red-500",
     link: "https://hustle-for-muscle-by-shubham-kagathara.vercel.app/",
@@ -46,7 +45,7 @@ const projects = [
     title: "Premium Salon Website",
     category: "Business",
     description: "Elegant salon website with service showcase, booking system preview, and gallery of work.",
-    image: "/placeholder-4.jpg",
+    icon: Scissors,
     tags: ["Next.js", "React", "Tailwind CSS"],
     color: "from-pink-500 to-rose-500",
     link: "https://salon-site-by-shubham-kagathara.vercel.app/",
@@ -57,7 +56,7 @@ const projects = [
     title: "Shubham Kagathara Portfolio",
     category: "Portfolio",
     description: "Personal portfolio website showcasing projects, skills, and professional experience with modern animations.",
-    image: "/placeholder-5.jpg",
+    icon: User,
     tags: ["Next.js", "Framer Motion", "TypeScript"],
     color: "from-purple-500 to-indigo-500",
     link: "https://shubhamkagathara-portfolio.vercel.app/",
@@ -68,7 +67,7 @@ const projects = [
     title: "Silvara Elite",
     category: "E-Commerce",
     description: "Premium e-commerce platform with product catalog, shopping cart, and elegant user interface.",
-    image: "/placeholder-6.jpg",
+    icon: ShoppingBag,
     tags: ["Next.js", "React", "Commerce"],
     color: "from-amber-500 to-yellow-500",
     link: "https://silvaraelite.vercel.app/",
@@ -217,40 +216,38 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       whileHover={{ y: -6, scale: 1.02 }}
       className="group relative premium-card overflow-hidden border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-shadow duration-300"
     >
-      {/* Image Container */}
-      <div className="relative h-64 bg-gradient-to-br from-primary-bg to-primary-muted/20 overflow-hidden">
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+      {/* Icon Header with Gradient Background */}
+      <div className="relative h-64 overflow-hidden">
+        {/* Gradient Background */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${project.color}`} />
 
-        {/* Overlay on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-          <div className="flex gap-3">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-white rounded-lg hover:bg-brand-primary hover:text-white transition-all"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ExternalLink className="w-5 h-5" />
-            </a>
-            {project.github !== "#" && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-white rounded-lg hover:bg-brand-primary hover:text-white transition-all"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Github className="w-5 h-5" />
-              </a>
-            )}
-          </div>
+        {/* Decorative Blur Elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 right-10 w-32 h-32 bg-white rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
+        </div>
+
+        {/* Large Centered Icon */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            transition={{ duration: 0.3 }}
+          >
+            <project.icon className="w-24 h-24 text-white drop-shadow-2xl" strokeWidth={1.5} />
+          </motion.div>
+        </div>
+
+        {/* Hover Overlay with Action Button */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-white rounded-xl hover:bg-brand-primary hover:text-white transition-all shadow-lg transform hover:scale-110"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ExternalLink className="w-6 h-6" />
+          </a>
         </div>
       </div>
 

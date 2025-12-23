@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import {
   Mail,
   Phone,
@@ -120,7 +121,6 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center mb-16"
           >

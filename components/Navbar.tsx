@@ -11,7 +11,7 @@ const navItems = [
   { name: "About", path: "/about" },
   { name: "Services", path: "/services" },
   { name: "Portfolio", path: "/portfolio" },
-  { name: "Blog", path: "/blog" },
+  // { name: "Blog", path: "/blog" }, // Hidden for now
   { name: "Contact", path: "/contact" },
 ];
 

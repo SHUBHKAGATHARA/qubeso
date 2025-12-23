@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SplashProvider from "@/components/SplashProvider";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <ScrollProgress />
         <SplashProvider>
           <Navbar />
           <main className="min-h-screen pt-20">
@@ -35,6 +38,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </SplashProvider>
+        <BackToTop />
       </body>
     </html>
   );

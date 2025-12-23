@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Zap, Shield, Rocket, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import StatsCounter from "@/components/StatsCounter";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import FAQ from "@/components/FAQ";
 
 export default function HomePage() {
   const features = [
@@ -209,6 +212,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Stats Counter Section */}
+      <StatsCounter />
+
+      {/* Testimonials Section */}
+      <TestimonialsCarousel />
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden bg-gradient-to-br from-brand-primary to-brand-hover">

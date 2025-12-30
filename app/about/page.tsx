@@ -3,6 +3,7 @@
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Target,
   Eye,
@@ -61,6 +62,26 @@ export default function AboutPage() {
               We're a team of passionate technologists, designers, and strategists
               dedicated to transforming businesses through innovative digital solutions.
             </p>
+
+            {/* Team Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-12 max-w-4xl mx-auto"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/20 to-transparent z-10" />
+                <Image
+                  src="/about-team.png"
+                  alt="QUBESO TECH team collaboration"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

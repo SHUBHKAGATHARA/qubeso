@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface SplashScreenProps {
     isLoading: boolean;
@@ -15,12 +16,12 @@ export default function SplashScreen({ isLoading, onComplete }: SplashScreenProp
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-brand-primary to-brand-hover overflow-hidden"
+                    className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-100 overflow-hidden"
                 >
                     {/* Animated Background Pattern */}
-                    <div className="absolute inset-0 opacity-10">
-                        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" />
-                        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+                    <div className="absolute inset-0 opacity-30">
+                        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl animate-pulse" />
+                        <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-brand-secondary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
                     </div>
 
                     {/* Logo Container */}
@@ -34,57 +35,57 @@ export default function SplashScreen({ isLoading, onComplete }: SplashScreenProp
                                 ease: [0.22, 1, 0.36, 1],
                                 delay: 0.1
                             }}
-                            className="flex items-center gap-4"
+                            className="flex items-center justify-center"
                         >
-                            {/* Logo Icon */}
+                            {/* Qubeso Logo */}
                             <motion.div
-                                initial={{ rotate: -10 }}
+                                initial={{ rotate: -5 }}
                                 animate={{ rotate: 0 }}
                                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                                className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-2xl"
+                                className="bg-white rounded-2xl p-10 shadow-2xl border border-gray-200"
                             >
-                                <span className="text-brand-primary font-bold text-4xl">Q</span>
-                            </motion.div>
-
-                            {/* Company Name */}
-                            <motion.div
-                                initial={{ x: -20, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{
-                                    duration: 0.6,
-                                    ease: [0.22, 1, 0.36, 1],
-                                    delay: 0.3
-                                }}
-                            >
-                                <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-                                    QUBESO TECH
-                                </h1>
+                                <Image
+                                    src="/qubeso-logo.jpg"
+                                    alt="Qubeso Tech Logo"
+                                    width={400}
+                                    height={133}
+                                    className="w-auto h-28"
+                                    priority
+                                />
                             </motion.div>
                         </motion.div>
 
-                        {/* Loading Indicator - Dots Pulse */}
+                        {/* Loading Indicator - Modern Spinner */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.4 }}
-                            className="flex items-center gap-2"
+                            className="relative w-12 h-12"
                         >
-                            {[0, 1, 2].map((index) => (
-                                <motion.div
-                                    key={index}
-                                    className="w-2.5 h-2.5 bg-white rounded-full"
-                                    animate={{
-                                        scale: [1, 1.3, 1],
-                                        opacity: [0.5, 1, 0.5]
-                                    }}
-                                    transition={{
-                                        duration: 1,
-                                        repeat: Infinity,
-                                        delay: index * 0.15,
-                                        ease: "easeInOut"
-                                    }}
-                                />
-                            ))}
+                            {/* Outer spinning circle */}
+                            <motion.div
+                                className="absolute inset-0 rounded-full border-4 border-gray-200"
+                                style={{ borderTopColor: '#FF6B35' }}
+                                animate={{ rotate: 360 }}
+                                transition={{
+                                    duration: 1,
+                                    repeat: Infinity,
+                                    ease: "linear"
+                                }}
+                            />
+                            {/* Inner pulsing circle */}
+                            <motion.div
+                                className="absolute inset-2 rounded-full bg-brand-primary/20"
+                                animate={{
+                                    scale: [1, 1.2, 1],
+                                    opacity: [0.5, 0.8, 0.5]
+                                }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                            />
                         </motion.div>
                     </div>
                 </motion.div>

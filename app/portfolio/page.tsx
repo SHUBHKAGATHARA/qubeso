@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ExternalLink, Briefcase, Scale, Dumbbell, Scissors, User, ShoppingBag, Sparkles } from "lucide-react";
+import { ExternalLink, Briefcase, Scale, Dumbbell, Scissors, User, ShoppingBag, Sparkles, Grid3x3, Box } from "lucide-react";
+import Carousel3D from "@/components/Carousel3D";
 
 const categories = ["All", "Business", "E-Commerce", "Portfolio", "Fitness"];
 
@@ -77,10 +78,22 @@ const projects = [
 
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [viewMode, setViewMode] = useState<"grid" | "carousel">("grid");
+  const [showCarousel, setShowCarousel] = useState(false);
 
   const filteredProjects = selectedCategory === "All"
     ? projects
     : projects.filter(project => project.category === selectedCategory);
+
+  // Handle view mode change with splash effect
+  const handleViewToggle = (mode: "grid" | "carousel") => {
+    if (mode === "carousel" && !showCarousel) {
+      setShowCarousel(true);
+      setTimeout(() => setViewMode(mode), 150);
+    } else {
+      setViewMode(mode);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background-primary">
@@ -118,56 +131,114 @@ export default function PortfolioPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-text-muted leading-relaxed"
+              className="text-xl md:text-2xl text-text-muted leading-relaxed mb-8"
             >
               Explore our portfolio of successful projects delivered to clients across various industries.
             </motion.p>
-          </div>
-        </div>
-      </section>
 
-      {/* Filter Categories */}
-      <section className="py-12 bg-background-primary border-b border-border">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${selectedCategory === category
-                  ? "bg-brand-primary text-white shadow-medium"
-                  : "bg-background-primary text-text-primary hover:bg-brand-primary/10 hover:text-brand-primary"
+            {/* View Mode Toggle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex items-center justify-center gap-3"
+            >
+              <button
+                onClick={() => handleViewToggle("grid")}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${viewMode === "grid"
+                    ? "bg-brand-primary text-white shadow-lg"
+                    : "bg-white border-2 border-border text-text-muted hover:border-brand-primary hover:text-brand-primary"
                   }`}
               >
-                {category}
-              </motion.button>
-            ))}
-          </motion.div>
+                <Grid3x3 className="w-5 h-5" />
+                Grid View
+              </button>
+
+              <button
+                onClick={() => handleViewToggle("carousel")}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${viewMode === "carousel"
+                    ? "bg-brand-primary text-white shadow-lg"
+                    : "bg-white border-2 border-border text-text-muted hover:border-brand-primary hover:text-brand-primary"
+                  }`}
+              >
+                <Box className="w-5 h-5" />
+                3D Carousel
+              </button>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="py-24 bg-background-primary">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
+      {/* Filter Categories - Only show in grid view */}
+      {viewMode === "grid" && (
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="py-12 bg-background-primary border-b border-border"
+        >
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-wrap justify-center gap-4"
+            >
+              {categories.map((category) => (
+                <motion.button
+                  key={category}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${selectedCategory === category
+                      ? "bg-brand-primary text-white shadow-medium"
+                      : "bg-background-primary text-text-primary hover:bg-brand-primary/10 hover:text-brand-primary"
+                    }`}
+                >
+                  {category}
+                </motion.button>
+              ))}
+            </motion.div>
           </div>
+        </motion.section>
+      )}
 
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-2xl text-text-muted">No projects found in this category.</p>
-            </div>
+      {/* Projects - Grid or Carousel View */}
+      <section className="py-24 bg-background-primary">
+        <AnimatePresence mode="wait">
+          {viewMode === "grid" ? (
+            <motion.div
+              key="grid-view"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="container mx-auto px-6"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProjects.map((project, index) => (
+                  <ProjectCard key={project.id} project={project} index={index} />
+                ))}
+              </div>
+
+              {filteredProjects.length === 0 && (
+                <div className="text-center py-20">
+                  <p className="text-2xl text-text-muted">No projects found in this category.</p>
+                </div>
+              )}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="carousel-view"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Carousel3D projects={projects} />
+            </motion.div>
           )}
-        </div>
+        </AnimatePresence>
       </section>
 
       {/* CTA Section */}

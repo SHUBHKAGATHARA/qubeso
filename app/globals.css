@@ -188,6 +188,109 @@ html {
   box-shadow: 0 0 0 4px rgba(43, 69, 147, 0.15);
 }
 
+/* ============================================
+   3D Carousel Animations & Effects
+   ============================================ */
+
+/* Gradient shift animation for card headers */
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(20px, -20px) scale(1.1);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Delayed floating for variety */
+@keyframes float-delayed {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-20px, 20px) scale(1.1);
+  }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+}
+
+/* Slow pulse for glow effects */
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Premium carousel glow shadow */
+.shadow-carousel-glow {
+  box-shadow:
+    0 0 30px rgba(43, 69, 147, 0.3),
+    0 0 60px rgba(43, 69, 147, 0.2),
+    0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D perspective utilities */
+.carousel-perspective {
+  perspective: 2000px;
+}
+
+.carousel-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* GPU-accelerated transforms for performance */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Premium hover shadow */
+.shadow-premium-hover {
+  box-shadow:
+    0 20px 60px rgba(43, 69, 147, 0.25),
+    0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
@@ -197,5 +300,10 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* Disable 3D transforms for reduced motion */
+  .carousel-preserve-3d {
+    transform-style: flat;
   }
 }

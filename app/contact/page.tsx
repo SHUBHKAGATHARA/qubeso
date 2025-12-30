@@ -49,16 +49,20 @@ export default function ContactPage() {
           "Accept": "application/json",
         },
         body: JSON.stringify({
-          access_key: "cf358a2e-1316-4b58-bc26-bde7b4aae4fc",
+          access_key: "7f47e4af-8380-49ff-8903-3d89cd534791",
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           subject: formData.subject,
           message: formData.message,
+          from_name: formData.name,
+          replyto: formData.email,
         }),
       });
 
       const result = await response.json();
+
+      console.log("Web3Forms Response:", result); // Debug log
 
       if (result.success) {
         setIsSubmitted(true);
@@ -74,9 +78,11 @@ export default function ContactPage() {
           setIsSubmitted(false);
         }, 3000);
       } else {
-        setError("Failed to send message. Please try again.");
+        setError(result.message || "Failed to send message. Please try again.");
+        console.error("Web3Forms Error:", result);
       }
     } catch (err) {
+      console.error("Submission Error:", err);
       setError("An error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
@@ -175,8 +181,8 @@ export default function ContactPage() {
                 {
                   icon: Mail,
                   title: "Email Us",
-                  content: "kagatharashubham9@gmail.com",
-                  subContent: "support@qubesotech.com",
+                  content: "qubesoinnovations@gmail.com",
+                  subContent: "We'll respond within 24 hours",
                   color: "from-blue-500 to-cyan-500"
                 },
                 {

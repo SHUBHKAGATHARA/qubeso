@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -39,6 +40,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Split nav items for centered logo layout
+  const leftNavItems = navItems.slice(0, 2); // Home, About
+  const rightNavItems = navItems.slice(2); // Services, Portfolio, Contact
+
   return (
     <motion.nav
       variants={{
@@ -47,120 +52,257 @@ export default function Navbar() {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-white/95 backdrop-blur-lg shadow-medium border-b border-border"
-        : "bg-white/80 backdrop-blur-sm"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
     >
+      {/* Floating Container with Premium Glassmorphism */}
       <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2"
-            >
-              <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center shadow-premium">
-                <span className="text-white font-bold text-xl">Q</span>
+        <motion.div
+          animate={{
+            backgroundColor: scrolled
+              ? "rgba(255, 255, 255, 0.95)"
+              : "rgba(255, 255, 255, 0.85)",
+            backdropFilter: scrolled ? "blur(20px)" : "blur(12px)",
+          }}
+          transition={{ duration: 0.3 }}
+          className={`rounded-2xl border transition-all duration-300 ${scrolled
+            ? "shadow-xl border-gray-200/60"
+            : "shadow-lg border-gray-100/40"
+            }`}
+        >
+          <div className="px-6 py-3">
+            {/* Desktop Navigation - Centered Logo Layout */}
+            <div className="hidden md:flex items-center justify-between gap-8">
+              {/* Left Navigation */}
+              <div className="flex items-center gap-6 flex-1 justify-end">
+                {leftNavItems.map((item) => (
+                  <Link key={item.path} href={item.path}>
+                    <motion.div
+                      whileHover={{ y: -2 }}
+                      className="relative group"
+                    >
+                      <span
+                        className={`font-medium transition-colors text-sm uppercase tracking-wide ${pathname === item.path
+                          ? "text-brand-primary"
+                          : "text-text-muted hover:text-brand-primary"
+                          }`}
+                      >
+                        {item.name}
+                      </span>
+                      {/* Animated underline */}
+                      <motion.div
+                        className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary origin-left ${pathname === item.path ? "scale-x-100" : "scale-x-0"
+                          } group-hover:scale-x-100 transition-transform duration-300`}
+                      />
+                    </motion.div>
+                  </Link>
+                ))}
               </div>
-              <span className="text-xl font-bold text-text-heading">
-                QUBESO TECH
-              </span>
-            </motion.div>
-          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
+              {/* Centered Logo */}
+              <Link href="/">
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center px-4"
+                >
+                  <Image
+                    src="/qubeso-logo.jpg"
+                    alt="Qubeso Tech Logo"
+                    width={400}
+                    height={133}
+                    className="h-20 w-auto object-contain mix-blend-multiply"
+                    priority
+                  />
+                </motion.div>
+              </Link>
+
+              {/* Right Navigation */}
+              <div className="flex items-center gap-6 flex-1">
+                {rightNavItems.slice(0, -1).map((item) => (
+                  <Link key={item.path} href={item.path}>
+                    <motion.div
+                      whileHover={{ y: -2 }}
+                      className="relative group"
+                    >
+                      <span
+                        className={`font-medium transition-colors text-sm uppercase tracking-wide ${pathname === item.path
+                          ? "text-brand-primary"
+                          : "text-text-muted hover:text-brand-primary"
+                          }`}
+                      >
+                        {item.name}
+                      </span>
+                      <motion.div
+                        className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary origin-left ${pathname === item.path ? "scale-x-100" : "scale-x-0"
+                          } group-hover:scale-x-100 transition-transform duration-300`}
+                      />
+                    </motion.div>
+                  </Link>
+                ))}
+
+                {/* CTA Button */}
+                <Link href="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="px-6 py-2.5 bg-brand-primary text-white rounded-xl font-medium text-sm shadow-lg hover:shadow-xl hover:bg-brand-hover transition-all duration-300"
+                  >
+                    Get Started
+                  </motion.button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Mobile Header */}
+            <div className="md:hidden flex items-center justify-between">
+              {/* Mobile Logo */}
+              <Link href="/">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="relative"
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center"
                 >
-                  <span
-                    className={`font-medium transition-colors ${pathname === item.path
-                      ? "text-brand-primary"
-                      : "text-text-muted hover:text-brand-primary"
-                      }`}
-                  >
-                    {item.name}
-                  </span>
-                  {pathname === item.path && (
-                    <motion.div
-                      layoutId="navbar-indicator"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
+                  <Image
+                    src="/qubeso-logo.jpg"
+                    alt="Qubeso Tech Logo"
+                    width={400}
+                    height={133}
+                    className="h-20 w-auto object-contain mix-blend-multiply"
+                    priority
+                  />
                 </motion.div>
               </Link>
-            ))}
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-brand-primary text-white rounded-lg font-medium shadow-premium hover:shadow-premium-hover hover:bg-brand-hover transition-all duration-300"
-              >
-                Get Started
-              </motion.button>
-            </Link>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-text-primary hover:text-brand-primary transition-colors"
-          >
-            {isOpen ? <X /> : <Menu />}
-          </button>
-        </div>
+              {/* Mobile Menu Button */}
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2.5 rounded-xl bg-brand-primary/10 text-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-300"
+              >
+                <AnimatePresence mode="wait">
+                  {isOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X className="w-6 h-6" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu className="w-6 h-6" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Enhanced Sliding Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden bg-white border-t border-border shadow-large"
-          >
-            <div className="container mx-auto px-6 py-4">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.path}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link href={item.path}>
-                    <div
-                      className={`py-3 px-4 rounded-lg ${pathname === item.path
-                        ? "bg-brand-primary/10 text-brand-primary font-semibold"
-                        : "text-text-primary hover:bg-background-secondary"
-                        }`}
-                      onClick={() => setIsOpen(false)}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed right-0 top-0 bottom-0 w-80 bg-white/95 backdrop-blur-xl shadow-2xl md:hidden overflow-y-auto border-l border-gray-200/60"
+            >
+              <div className="p-6 space-y-6">
+                {/* Close button */}
+                <div className="flex justify-between items-center pb-4 border-b border-gray-200/60">
+                  <span className="text-lg font-bold text-brand-primary">Menu</span>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <X className="w-5 h-5 text-text-muted" />
+                  </button>
+                </div>
+
+                {/* Navigation Items */}
+                <div className="space-y-2">
+                  {navItems.map((item, index) => (
+                    <motion.div
+                      key={item.path}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.08, duration: 0.3 }}
                     >
-                      {item.name}
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-              <Link href="/contact">
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                      <Link href={item.path}>
+                        <motion.div
+                          whileTap={{ scale: 0.98 }}
+                          className={`py-3.5 px-5 rounded-xl font-medium transition-all duration-300 ${pathname === item.path
+                            ? "bg-brand-primary text-white shadow-lg"
+                            : "text-text-primary hover:bg-brand-primary/10 hover:text-brand-primary"
+                            }`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span>{item.name}</span>
+                            {pathname === item.path && (
+                              <motion.div
+                                layoutId="mobile-indicator"
+                                className="w-2 h-2 rounded-full bg-white"
+                              />
+                            )}
+                          </div>
+                        </motion.div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <Link href="/contact">
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.3 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full py-4 bg-gradient-to-r from-brand-primary to-brand-hover text-white rounded-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Get Started
+                  </motion.button>
+                </Link>
+
+                {/* Decorative Element */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="mt-4 w-full px-6 py-3 bg-brand-primary text-white rounded-lg font-medium shadow-premium"
-                  onClick={() => setIsOpen(false)}
+                  className="pt-6 border-t border-gray-200/60"
                 >
-                  Get Started
-                </motion.button>
-              </Link>
-            </div>
-          </motion.div>
+                  <p className="text-xs text-text-muted text-center">
+                    © 2024 Qubeso Tech. Premium Solutions.
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.nav>

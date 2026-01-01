@@ -131,11 +131,8 @@ export default function Footer() {
           className="mt-12 pt-8 border-t border-border"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-text-muted text-sm">
-              © {new Date().getFullYear()} QUBESO TECH. All rights reserved.
-            </p>
-            <p className="text-text-muted text-sm">
-              Built with ❤️ using Next.js & Framer Motion
+            <p className="text-text-muted text-sm text-center md:text-left">
+              © 2026 QUBESO TECH. All rights reserved.
             </p>
           </div>
         </motion.div>

@@ -150,7 +150,7 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-b from-background-secondary to-white overflow-hidden">
+      <section className="relative pt-16 md:pt-28 pb-20 bg-gradient-to-b from-background-secondary to-white overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl" />
         </div>

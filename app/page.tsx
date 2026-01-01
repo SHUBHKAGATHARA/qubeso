@@ -35,7 +35,7 @@ export default function HomePage() {
   return (
     <div className="relative bg-white">
       {/* Hero Section - Left Content + Right Image */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-16 md:pt-28 pb-16">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/10 via-white to-brand-primary/5 pointer-events-none" />
 

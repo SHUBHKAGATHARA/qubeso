@@ -19,7 +19,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background-primary">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-background-primary overflow-hidden">
+      <section className="relative pt-16 md:pt-28 pb-20 bg-background-primary overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <motion.div
             animate={{

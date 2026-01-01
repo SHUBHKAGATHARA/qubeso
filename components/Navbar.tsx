@@ -82,9 +82,9 @@ export default function Navbar() {
                   <Image
                     src="/qubeso-logo-transparent.png"
                     alt="Qubeso Tech Logo"
-                    width={400}
-                    height={133}
-                    className="h-24 w-auto object-contain"
+                    width={500}
+                    height={166}
+                    className="h-40 w-auto object-contain -my-10"
                     priority
                     style={{ mixBlendMode: 'normal' }}
                   />
@@ -146,7 +146,7 @@ export default function Navbar() {
                     alt="Qubeso Tech Logo"
                     width={300}
                     height={100}
-                    className="h-8 w-auto object-contain"
+                    className="h-16 w-auto object-contain -my-4"
                     priority
                     style={{ mixBlendMode: 'normal' }}
                   />
@@ -277,7 +277,7 @@ export default function Navbar() {
                   className="pt-6 border-t border-gray-200/60"
                 >
                   <p className="text-xs text-text-muted text-center">
-                    © 2024 Qubeso Tech. Premium Solutions.
+                    © 2026 Qubeso Tech. Premium Solutions.
                   </p>
                 </motion.div>
               </div>

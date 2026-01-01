@@ -98,7 +98,7 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-background-primary">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-background-primary overflow-hidden">
+      <section className="relative pt-16 md:pt-28 pb-20 bg-background-primary overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-3xl animate-pulse" />
         </div>
@@ -146,8 +146,8 @@ export default function PortfolioPage() {
               <button
                 onClick={() => handleViewToggle("grid")}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${viewMode === "grid"
-                    ? "bg-brand-primary text-white shadow-lg"
-                    : "bg-white border-2 border-border text-text-muted hover:border-brand-primary hover:text-brand-primary"
+                  ? "bg-brand-primary text-white shadow-lg"
+                  : "bg-white border-2 border-border text-text-muted hover:border-brand-primary hover:text-brand-primary"
                   }`}
               >
                 <Grid3x3 className="w-5 h-5" />
@@ -157,8 +157,8 @@ export default function PortfolioPage() {
               <button
                 onClick={() => handleViewToggle("carousel")}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${viewMode === "carousel"
-                    ? "bg-brand-primary text-white shadow-lg"
-                    : "bg-white border-2 border-border text-text-muted hover:border-brand-primary hover:text-brand-primary"
+                  ? "bg-brand-primary text-white shadow-lg"
+                  : "bg-white border-2 border-border text-text-muted hover:border-brand-primary hover:text-brand-primary"
                   }`}
               >
                 <Box className="w-5 h-5" />
@@ -191,8 +191,8 @@ export default function PortfolioPage() {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${selectedCategory === category
-                      ? "bg-brand-primary text-white shadow-medium"
-                      : "bg-background-primary text-text-primary hover:bg-brand-primary/10 hover:text-brand-primary"
+                    ? "bg-brand-primary text-white shadow-medium"
+                    : "bg-background-primary text-text-primary hover:bg-brand-primary/10 hover:text-brand-primary"
                     }`}
                 >
                   {category}

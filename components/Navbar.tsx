@@ -70,75 +70,54 @@ export default function Navbar() {
             }`}
         >
           <div className="px-6 py-3">
-            {/* Desktop Navigation - Centered Logo Layout */}
-            <div className="hidden md:flex items-center justify-between gap-8">
-              {/* Left Navigation */}
-              <div className="flex items-center gap-6 flex-1 justify-end">
-                {leftNavItems.map((item) => (
-                  <Link key={item.path} href={item.path}>
-                    <motion.div
-                      whileHover={{ y: -2 }}
-                      className="relative group"
-                    >
-                      <span
-                        className={`font-medium transition-colors text-sm uppercase tracking-wide ${pathname === item.path
-                          ? "text-brand-primary"
-                          : "text-text-muted hover:text-brand-primary"
-                          }`}
-                      >
-                        {item.name}
-                      </span>
-                      {/* Animated underline */}
-                      <motion.div
-                        className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary origin-left ${pathname === item.path ? "scale-x-100" : "scale-x-0"
-                          } group-hover:scale-x-100 transition-transform duration-300`}
-                      />
-                    </motion.div>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Centered Logo */}
-              <Link href="/">
+            {/* Desktop Navigation - Logo Left Layout */}
+            <div className="hidden md:flex items-center justify-between gap-8 h-12">
+              {/* Logo - Left Side */}
+              <Link href="/" className="flex-shrink-0">
                 <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center px-4"
+                  className="flex items-center"
                 >
                   <Image
-                    src="/qubeso-logo.jpg"
+                    src="/qubeso-logo-transparent.png"
                     alt="Qubeso Tech Logo"
                     width={400}
                     height={133}
-                    className="h-20 w-auto object-contain mix-blend-multiply"
+                    className="h-24 w-auto object-contain"
                     priority
+                    style={{ mixBlendMode: 'normal' }}
                   />
                 </motion.div>
               </Link>
 
-              {/* Right Navigation */}
-              <div className="flex items-center gap-6 flex-1">
-                {rightNavItems.slice(0, -1).map((item) => (
-                  <Link key={item.path} href={item.path}>
-                    <motion.div
-                      whileHover={{ y: -2 }}
-                      className="relative group"
-                    >
-                      <span
-                        className={`font-medium transition-colors text-sm uppercase tracking-wide ${pathname === item.path
-                          ? "text-brand-primary"
-                          : "text-text-muted hover:text-brand-primary"
-                          }`}
-                      >
-                        {item.name}
-                      </span>
+              {/* Navigation & CTA - Right Side */}
+              <div className="flex items-center gap-8">
+                {/* Nav Items */}
+                <div className="flex items-center gap-6">
+                  {navItems.map((item) => (
+                    <Link key={item.path} href={item.path}>
                       <motion.div
-                        className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary origin-left ${pathname === item.path ? "scale-x-100" : "scale-x-0"
-                          } group-hover:scale-x-100 transition-transform duration-300`}
-                      />
-                    </motion.div>
-                  </Link>
-                ))}
+                        whileHover={{ y: -2 }}
+                        className="relative group"
+                      >
+                        <span
+                          className={`font-medium transition-colors text-sm uppercase tracking-wide ${pathname === item.path
+                            ? "text-brand-primary"
+                            : "text-text-muted hover:text-brand-primary"
+                            }`}
+                        >
+                          {item.name}
+                        </span>
+                        {/* Animated underline */}
+                        <motion.div
+                          className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary origin-left ${pathname === item.path ? "scale-x-100" : "scale-x-0"
+                            } group-hover:scale-x-100 transition-transform duration-300`}
+                        />
+                      </motion.div>
+                    </Link>
+                  ))}
+                </div>
 
                 {/* CTA Button */}
                 <Link href="/contact">
@@ -156,19 +135,20 @@ export default function Navbar() {
             {/* Mobile Header */}
             <div className="md:hidden flex items-center justify-between">
               {/* Mobile Logo */}
-              <Link href="/">
+              <Link href="/" className="flex-shrink-0">
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   className="flex items-center"
                 >
                   <Image
-                    src="/qubeso-logo.jpg"
+                    src="/qubeso-logo-transparent.png"
                     alt="Qubeso Tech Logo"
-                    width={400}
-                    height={133}
-                    className="h-20 w-auto object-contain mix-blend-multiply"
+                    width={300}
+                    height={100}
+                    className="h-8 w-auto object-contain"
                     priority
+                    style={{ mixBlendMode: 'normal' }}
                   />
                 </motion.div>
               </Link>

@@ -42,15 +42,16 @@ export default function SplashScreen({ isLoading, onComplete }: SplashScreenProp
                                 initial={{ rotate: -5 }}
                                 animate={{ rotate: 0 }}
                                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                                className="bg-white rounded-2xl p-10 shadow-2xl border border-gray-200"
+                                className="p-6"
                             >
                                 <Image
-                                    src="/qubeso-logo.jpg"
+                                    src="/qubeso-logo-transparent.png"
                                     alt="Qubeso Tech Logo"
                                     width={400}
                                     height={133}
-                                    className="w-auto h-28"
+                                    className="w-auto h-56"
                                     priority
+                                    style={{ mixBlendMode: 'normal' }}
                                 />
                             </motion.div>
                         </motion.div>

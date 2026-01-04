@@ -98,7 +98,7 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-background-primary">
       {/* Hero Section */}
-      <section className="relative pt-16 md:pt-28 pb-20 bg-background-primary overflow-hidden">
+      <section className="relative pt-20 md:pt-28 pb-12 md:pb-16 bg-background-primary overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-3xl animate-pulse" />
         </div>
@@ -119,7 +119,7 @@ export default function PortfolioPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary"
             >
               Our Latest{" "}
               <span className="text-brand-primary">
@@ -131,7 +131,7 @@ export default function PortfolioPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-text-muted leading-relaxed mb-8"
+              className="text-lg sm:text-xl md:text-2xl text-text-muted leading-relaxed mb-8"
             >
               Explore our portfolio of successful projects delivered to clients across various industries.
             </motion.p>
@@ -175,9 +175,9 @@ export default function PortfolioPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="py-12 bg-background-primary border-b border-border"
+          className="py-8 md:py-10 bg-background-primary border-b border-border"
         >
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -213,7 +213,7 @@ export default function PortfolioPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="container mx-auto px-6"
+              className="container mx-auto px-4 sm:px-6"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredProjects.map((project, index) => (
@@ -242,9 +242,9 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-brand-primary to-brand-hover relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-brand-primary to-brand-hover relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

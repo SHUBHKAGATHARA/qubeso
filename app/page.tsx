@@ -35,12 +35,12 @@ export default function HomePage() {
   return (
     <div className="relative bg-white">
       {/* Hero Section - Left Content + Right Image */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-16 md:pt-28 pb-16">
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20 md:pt-24 pb-12 md:pb-16">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/10 via-white to-brand-primary/5 pointer-events-none" />
 
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -64,7 +64,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-text-heading"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-text-heading"
               >
                 We Build{" "}
                 <span className="text-brand-primary">Scalable</span>
@@ -79,7 +79,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-xl md:text-2xl text-text-muted leading-relaxed max-w-2xl"
+                className="text-lg sm:text-xl md:text-2xl text-text-muted leading-relaxed max-w-2xl"
               >
                 Enterprise-ready solutions combining cutting-edge technology with exceptional design, delivering measurable business value.
               </motion.p>
@@ -163,8 +163,8 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-background-secondary">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-20 bg-background-secondary">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -223,9 +223,9 @@ export default function HomePage() {
       <FAQ />
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-brand-primary to-brand-hover">
+      <section className="py-12 md:py-20 relative overflow-hidden bg-gradient-to-br from-brand-primary to-brand-hover">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

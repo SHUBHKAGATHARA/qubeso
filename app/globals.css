@@ -104,12 +104,12 @@
 
   /* Typography */
   .section-title {
-    @apply text-4xl md:text-5xl font-bold mb-4;
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4;
     color: var(--text-heading);
   }
 
   .section-subtitle {
-    @apply text-xl max-w-2xl mx-auto;
+    @apply text-lg sm:text-xl max-w-2xl mx-auto;
     color: var(--text-muted);
   }
 

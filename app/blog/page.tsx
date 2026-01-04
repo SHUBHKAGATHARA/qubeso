@@ -86,7 +86,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-background-primary">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-background-primary overflow-hidden">
+      <section className="relative pt-20 md:pt-28 pb-12 md:pb-16 bg-background-primary overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <motion.div
             animate={{
@@ -102,7 +102,7 @@ export default function BlogPage() {
           />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,13 +119,13 @@ export default function BlogPage() {
               Our Blog
             </motion.div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
               Insights &{" "}
               <span className="text-brand-primary">
                 Resources
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-text-muted leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-text-muted leading-relaxed">
               Stay updated with the latest trends, tips, and insights from the world of technology and digital innovation.
             </p>
           </motion.div>
@@ -133,8 +133,8 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Post */}
-      <section className="py-16 bg-background-primary">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-16 bg-background-primary">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,8 +150,8 @@ export default function BlogPage() {
       </section>
 
       {/* Recent Posts */}
-      <section className="py-24 bg-background-primary">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-20 bg-background-primary">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -171,9 +171,9 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-24 bg-gradient-to-br from-background-secondary to-background-primary relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-background-secondary to-background-primary relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

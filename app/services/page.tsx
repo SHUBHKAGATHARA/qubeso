@@ -150,7 +150,7 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative pt-16 md:pt-28 pb-20 bg-gradient-to-b from-background-secondary to-white overflow-hidden">
+      <section className="relative pt-20 md:pt-24 pb-12 md:pb-16 bg-gradient-to-b from-background-secondary to-white overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl" />
         </div>
@@ -171,7 +171,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-heading"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-heading"
             >
               Transform Your Vision Into{" "}
               <span className="text-brand-primary">Reality</span>
@@ -181,7 +181,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-text-muted leading-relaxed mb-12"
+              className="text-lg sm:text-xl md:text-2xl text-text-muted leading-relaxed mb-12"
             >
               From concept to deployment, we deliver premium digital solutions that drive business growth and user engagement.
             </motion.p>
@@ -240,8 +240,8 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -310,8 +310,8 @@ export default function ServicesPage() {
       </section>
 
       {/* Technology Stack */}
-      <section className="py-24 bg-background-secondary">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-20 bg-background-secondary">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -358,8 +358,8 @@ export default function ServicesPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -405,9 +405,9 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-brand-primary to-brand-hover relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-brand-primary to-brand-hover relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

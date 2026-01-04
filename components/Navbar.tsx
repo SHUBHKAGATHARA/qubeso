@@ -55,7 +55,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
     >
       {/* Floating Container with Premium Glassmorphism */}
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-3 sm:px-6 py-3 md:py-4">
         <motion.div
           animate={{
             backgroundColor: scrolled
@@ -69,7 +69,7 @@ export default function Navbar() {
             : "shadow-lg border-gray-100/40"
             }`}
         >
-          <div className="px-6 py-3">
+          <div className="px-3 sm:px-6 py-2 md:py-3">
             {/* Desktop Navigation - Logo Left Layout */}
             <div className="hidden md:flex items-center justify-between gap-8 h-12">
               {/* Logo - Left Side */}

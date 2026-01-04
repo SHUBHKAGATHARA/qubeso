@@ -107,7 +107,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background-primary">
       {/* Hero Section */}
-      <section className="relative pt-16 md:pt-28 pb-20 bg-background-primary overflow-hidden">
+      <section className="relative pt-20 md:pt-24 pb-12 md:pb-16 bg-background-primary overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <motion.div
             animate={{
@@ -123,17 +123,17 @@ export default function ContactPage() {
           />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-text-primary">
               Get In <span className="text-brand-primary">Touch</span>
             </h1>
-            <p className="text-xl md:text-2xl text-text-muted max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-text-muted max-w-2xl mx-auto">
               Have a project in mind? We'd love to hear from you. Let's discuss how we can help bring your vision to life.
             </p>
 
@@ -160,8 +160,8 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 bg-gradient-to-br from-background-secondary/50 to-background-primary">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-background-secondary/50 to-background-primary">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Info Cards */}
             <div className="space-y-6">
@@ -430,7 +430,7 @@ export default function ContactPage() {
 
       {/* Map Section */}
       <section className="py-24 bg-brand-secondary">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

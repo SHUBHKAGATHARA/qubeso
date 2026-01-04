@@ -445,13 +445,18 @@ export default function ContactPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-3xl overflow-hidden shadow-2xl h-96 bg-gradient-to-br from-brand-100 to-purple-100 flex items-center justify-center"
+            className="rounded-3xl overflow-hidden shadow-2xl h-96"
           >
-            <div className="text-center">
-              <MapPin className="w-16 h-16 text-accent-primary mx-auto mb-4" />
-              <p className="text-xl font-semibold text-text-primary">Interactive Map</p>
-              <p className="text-text-muted">123 Tech Street, Innovation District</p>
-            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118145.02990753936!2d70.35476112089846!3d22.567948200000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3957361c37bf42e5%3A0xa1c80a52e3e8f9c3!2sDhrol%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1704374400000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Qubeso Tech Location"
+            ></iframe>
           </motion.div>
         </div>
       </section>

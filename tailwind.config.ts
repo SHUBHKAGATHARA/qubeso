@@ -8,6 +8,9 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			screens: {
+				'xs': '360px',
+			},
 			colors: {
 				// Premium Light Theme
 				background: {

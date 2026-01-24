@@ -33,20 +33,20 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-white overflow-x-hidden">
       {/* Hero Section - Left Content + Right Image */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20 md:pt-24 pb-12 md:pb-16">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/10 via-white to-brand-primary/5 pointer-events-none" />
 
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="container mx-auto px-3 xs:px-4 sm:px-6 relative z-10 max-w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8 md:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-8"
+              className="space-y-6 xs:space-y-8"
             >
               {/* Badge */}
               <motion.div
@@ -64,7 +64,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-text-heading"
+                className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-text-heading"
               >
                 We Build{" "}
                 <span className="text-brand-primary">Scalable</span>
@@ -79,7 +79,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-lg sm:text-xl md:text-2xl text-text-muted leading-relaxed max-w-2xl"
+                className="text-base xs:text-lg sm:text-xl md:text-2xl text-text-muted leading-relaxed max-w-2xl"
               >
                 Enterprise-ready solutions combining cutting-edge technology with exceptional design, delivering measurable business value.
               </motion.p>
@@ -89,24 +89,24 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-4"
+                className="flex flex-col sm:flex-row gap-3 xs:gap-4 w-full max-w-full"
               >
-                <Link href="/contact">
+                <Link href="/contact" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group px-8 py-4 bg-brand-primary text-white rounded-xl font-semibold text-lg shadow-premium hover:shadow-premium-hover hover:bg-brand-hover transition-all duration-300 flex items-center justify-center gap-2"
+                    className="group w-full px-6 xs:px-8 py-3 xs:py-4 bg-brand-primary text-white rounded-xl font-semibold text-base xs:text-lg shadow-premium hover:shadow-premium-hover hover:bg-brand-hover transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     Get Started
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
                 </Link>
 
-                <Link href="/portfolio">
+                <Link href="/portfolio" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-transparent text-brand-primary rounded-xl font-semibold text-lg border-2 border-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-300"
+                    className="w-full px-6 xs:px-8 py-3 xs:py-4 bg-transparent text-brand-primary rounded-xl font-semibold text-base xs:text-lg border-2 border-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-300"
                   >
                     View Portfolio
                   </motion.button>
@@ -118,15 +118,15 @@ export default function HomePage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="flex items-center gap-8 pt-4"
+                className="flex flex-wrap items-center gap-4 xs:gap-6 sm:gap-8 pt-4"
               >
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-brand-primary" />
-                  <span className="text-sm text-text-muted">No Hidden Costs</span>
+                  <CheckCircle2 className="w-4 xs:w-5 h-4 xs:h-5 text-brand-primary flex-shrink-0" />
+                  <span className="text-xs xs:text-sm text-text-muted whitespace-nowrap">No Hidden Costs</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-brand-primary" />
-                  <span className="text-sm text-text-muted">24/7 Support</span>
+                  <CheckCircle2 className="w-4 xs:w-5 h-4 xs:h-5 text-brand-primary flex-shrink-0" />
+                  <span className="text-xs xs:text-sm text-text-muted whitespace-nowrap">24/7 Support</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -136,19 +136,19 @@ export default function HomePage() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
+              className="relative w-full max-w-full"
             >
               <motion.div
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
-                className="relative rounded-2xl overflow-hidden shadow-xl"
+                className="relative rounded-2xl overflow-hidden shadow-xl mx-auto max-w-full"
               >
                 <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-brand-primary/10 to-brand-secondary/20">
                   <Image
                     src="/hero_dashboard_mockup_1766497527242.png"
                     alt="Modern SaaS Dashboard"
                     fill
-                    className="object-contain p-8"
+                    className="object-contain p-4 xs:p-6 sm:p-8"
                     priority
                   />
                 </div>

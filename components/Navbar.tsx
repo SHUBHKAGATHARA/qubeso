@@ -70,7 +70,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
     >
       {/* Floating Container with Premium Glassmorphism */}
-      <div className="container mx-auto px-0 sm:px-6 py-3 md:py-4">
+      <div className="container mx-auto px-2 sm:px-6 py-3 md:py-4">
         <motion.div
           animate={{
             backgroundColor: scrolled
@@ -99,7 +99,7 @@ export default function Navbar() {
                     alt="Qubeso Tech Logo"
                     width={500}
                     height={166}
-                    className="h-40 w-auto object-contain -my-10"
+                    className="h-36 md:h-40 w-auto object-contain -my-8 md:-my-10"
                     priority
                     style={{ mixBlendMode: 'normal' }}
                   />
@@ -131,9 +131,9 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Header */}
-            <div className="md:hidden flex items-center justify-between w-full">
+            <div className="md:hidden flex items-center justify-between w-full gap-2">
               {/* Mobile Logo */}
-              <Link href="/" className="flex-shrink-0">
+              <Link href="/" className="flex-shrink-0 min-w-0">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -144,7 +144,7 @@ export default function Navbar() {
                     alt="Qubeso Tech Logo"
                     width={300}
                     height={100}
-                    className="h-12 w-auto object-contain"
+                    className="h-16 xs:h-20 sm:h-24 w-auto max-w-full object-contain"
                     priority
                     style={{ mixBlendMode: 'normal' }}
                   />

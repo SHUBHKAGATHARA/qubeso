@@ -93,12 +93,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#2B4593" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#2B4593" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} overflow-x-hidden`}>
         <EasterEggs />
         <ScrollProgress />
         <SplashProvider>
           <Navbar />
-          <main className="min-h-screen pt-20">
+          <main className="min-h-screen pt-20 overflow-x-hidden">
             {children}
           </main>
           <Footer />

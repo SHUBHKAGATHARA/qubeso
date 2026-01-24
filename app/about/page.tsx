@@ -92,22 +92,22 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatCard
               icon={Briefcase}
-              endValue={150}
-              suffix="+"
+              endValue={6}
+              suffix=""
               label="Projects Completed"
               color="from-blue-500 to-cyan-500"
             />
             <StatCard
               icon={Users}
-              endValue={50}
-              suffix="+"
+              endValue={3}
+              suffix=""
               label="Happy Clients"
               color="from-purple-500 to-pink-500"
             />
             <StatCard
               icon={TrendingUp}
-              endValue={5}
-              suffix="+"
+              endValue={1}
+              suffix=""
               label="Years Experience"
               color="from-orange-500 to-amber-500"
             />

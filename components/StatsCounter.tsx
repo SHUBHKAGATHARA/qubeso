@@ -5,10 +5,10 @@ import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { TrendingUp, Users, Award, Briefcase } from "lucide-react";
 
 const stats = [
-    { icon: Briefcase, label: "Projects Completed", value: 500, suffix: "+" },
-    { icon: Users, label: "Happy Clients", value: 150, suffix: "+" },
-    { icon: Award, label: "Awards Won", value: 25, suffix: "+" },
-    { icon: TrendingUp, label: "Years Experience", value: 10, suffix: "+" },
+    { icon: Briefcase, label: "Projects Completed", value: 6, suffix: "" },
+    { icon: Users, label: "Happy Clients", value: 3, suffix: "" },
+    { icon: Award, label: "Awards Won", value: 1, suffix: "" },
+    { icon: TrendingUp, label: "Years Experience", value: 1, suffix: "" },
 ];
 
 function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {

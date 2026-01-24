@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -137,7 +136,7 @@ const whyChooseUs = [
   {
     icon: Award,
     title: "Proven Track Record",
-    description: "500+ successful projects delivered across 15+ industries worldwide"
+    description: "6 successful projects delivered with excellence and client satisfaction"
   },
   {
     icon: TrendingUp,
@@ -195,15 +194,15 @@ export default function ServicesPage() {
             >
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-brand-primary" />
-                <span className="text-text-muted font-medium">500+ Projects Delivered</span>
+                <span className="text-text-muted font-medium">6 Projects Delivered</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-brand-primary" />
-                <span className="text-text-muted font-medium">50+ Happy Clients</span>
+                <span className="text-text-muted font-medium">3 Happy Clients</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-brand-primary" />
-                <span className="text-text-muted font-medium">99% Satisfaction Rate</span>
+                <span className="text-text-muted font-medium">1 Year Experience</span>
               </div>
             </motion.div>
 

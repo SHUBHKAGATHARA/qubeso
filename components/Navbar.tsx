@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Info, Briefcase, FolderOpen, Mail } from "lucide-react";
 import Image from "next/image";
+import { ExpandableTabs } from "@/components/ui/expandable-tabs";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -22,6 +23,20 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   const { scrollY } = useScroll();
+
+  const navigationTabs = [
+    { title: "Home", icon: Home, path: "/" },
+    { title: "About", icon: Info, path: "/about" },
+    { title: "Services", icon: Briefcase, path: "/services" },
+    { title: "Portfolio", icon: FolderOpen, path: "/portfolio" },
+    { title: "Contact", icon: Mail, path: "/contact" },
+  ];
+
+  const handleTabChange = (index: number | null) => {
+    if (index !== null && navigationTabs[index]) {
+      window.location.href = navigationTabs[index].path;
+    }
+  };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -55,7 +70,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
     >
       {/* Floating Container with Premium Glassmorphism */}
-      <div className="container mx-auto px-3 sm:px-6 py-3 md:py-4">
+      <div className="container mx-auto px-0 sm:px-6 py-3 md:py-4">
         <motion.div
           animate={{
             backgroundColor: scrolled
@@ -64,12 +79,12 @@ export default function Navbar() {
             backdropFilter: scrolled ? "blur(20px)" : "blur(12px)",
           }}
           transition={{ duration: 0.3 }}
-          className={`rounded-2xl border transition-all duration-300 ${scrolled
-            ? "shadow-xl border-gray-200/60"
-            : "shadow-lg border-gray-100/40"
+          className={`rounded-none sm:rounded-2xl border-0 sm:border transition-all duration-300 ${scrolled
+            ? "sm:shadow-xl sm:border-gray-200/60"
+            : "sm:shadow-lg sm:border-gray-100/40"
             }`}
         >
-          <div className="px-3 sm:px-6 py-2 md:py-3">
+          <div className="px-4 sm:px-6 py-2 md:py-3">
             {/* Desktop Navigation - Logo Left Layout */}
             <div className="hidden md:flex items-center justify-between gap-8 h-12">
               {/* Logo - Left Side */}
@@ -91,33 +106,16 @@ export default function Navbar() {
                 </motion.div>
               </Link>
 
+
               {/* Navigation & CTA - Right Side */}
               <div className="flex items-center gap-8">
-                {/* Nav Items */}
-                <div className="flex items-center gap-6">
-                  {navItems.map((item) => (
-                    <Link key={item.path} href={item.path}>
-                      <motion.div
-                        whileHover={{ y: -2 }}
-                        className="relative group"
-                      >
-                        <span
-                          className={`font-medium transition-colors text-sm uppercase tracking-wide ${pathname === item.path
-                            ? "text-brand-primary"
-                            : "text-text-muted hover:text-brand-primary"
-                            }`}
-                        >
-                          {item.name}
-                        </span>
-                        {/* Animated underline */}
-                        <motion.div
-                          className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary origin-left ${pathname === item.path ? "scale-x-100" : "scale-x-0"
-                            } group-hover:scale-x-100 transition-transform duration-300`}
-                        />
-                      </motion.div>
-                    </Link>
-                  ))}
-                </div>
+                {/* Expandable Tabs */}
+                <ExpandableTabs
+                  tabs={navigationTabs.map(({ title, icon }) => ({ title, icon }))}
+                  activeColor="text-brand-primary"
+                  className="border-brand-primary/20"
+                  onChange={handleTabChange}
+                />
 
                 {/* CTA Button */}
                 <Link href="/contact">
@@ -133,7 +131,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Header */}
-            <div className="md:hidden flex items-center justify-between">
+            <div className="md:hidden flex items-center justify-between w-full">
               {/* Mobile Logo */}
               <Link href="/" className="flex-shrink-0">
                 <motion.div
@@ -146,7 +144,7 @@ export default function Navbar() {
                     alt="Qubeso Tech Logo"
                     width={300}
                     height={100}
-                    className="h-16 w-auto object-contain -my-4"
+                    className="h-12 w-auto object-contain"
                     priority
                     style={{ mixBlendMode: 'normal' }}
                   />
@@ -157,7 +155,7 @@ export default function Navbar() {
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2.5 rounded-xl bg-brand-primary/10 text-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-300"
+                className="p-2.5 rounded-xl bg-brand-primary/10 text-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-300 flex-shrink-0"
               >
                 <AnimatePresence mode="wait">
                   {isOpen ? (
@@ -213,10 +211,10 @@ export default function Navbar() {
               <div className="p-6 space-y-6">
                 {/* Close button */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-200/60">
-                  <span className="text-lg font-bold text-brand-primary">Menu</span>
+                  <span className="text-lg font-bold text-brand-primary pl-1">Menu</span>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="p-2.5 rounded-lg hover:bg-gray-100 transition-colors -mr-0.5"
                   >
                     <X className="w-5 h-5 text-text-muted" />
                   </button>
@@ -234,7 +232,7 @@ export default function Navbar() {
                       <Link href={item.path}>
                         <motion.div
                           whileTap={{ scale: 0.98 }}
-                          className={`py-3.5 px-5 rounded-xl font-medium transition-all duration-300 ${pathname === item.path
+                          className={`py-4 px-6 rounded-xl font-medium transition-all duration-300 ${pathname === item.path
                             ? "bg-brand-primary text-white shadow-lg"
                             : "text-text-primary hover:bg-brand-primary/10 hover:text-brand-primary"
                             }`}

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Instagram, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   const footerLinks = {
@@ -21,9 +21,9 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Github, href: "#", label: "Github" },
+    { icon: Instagram, href: "https://www.instagram.com/qubesoinnovations/", label: "Instagram" },
+    { icon: Github, href: "https://github.com/SHUBHKAGATHARA", label: "GitHub" },
+    { icon: MessageCircle, href: "https://wa.me/918799380134", label: "WhatsApp" },
   ];
 
   return (
@@ -51,11 +51,15 @@ export default function Footer() {
                 Transforming ideas into premium digital experiences with cutting-edge technology and expert craftsmanship.
               </p>
             </motion.div>
+
+            {/* Social Media Links */}
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-10 h-10 bg-background-secondary hover:bg-brand-primary hover:text-white rounded-lg flex items-center justify-center transition-all duration-300 border border-border hover:border-brand-primary"

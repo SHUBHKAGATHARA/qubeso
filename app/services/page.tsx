@@ -19,6 +19,13 @@ import {
   Shield,
   Target
 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// Dynamic import for 3D component (client-side only)
+const Services3DExperience = dynamic(
+  () => import("@/components/3DServicesExperience"),
+  { ssr: false }
+);
 
 // ============================================
 // Premium Animation Variants - Production Ready
@@ -118,6 +125,14 @@ const services = [
     bgColor: "bg-orange-50"
   }
 ];
+
+// Transform services data for 3D component
+const services3D = services.map(service => ({
+  title: service.title,
+  features: service.deliverables,
+  color: service.bgColor,
+  gradient: service.gradient
+}));
 
 const techStack = {
   frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
@@ -238,75 +253,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-12 md:py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="section-title">
-              Our Core <span className="text-brand-primary">Services</span>
-            </h2>
-            <p className="section-subtitle">
-              Comprehensive solutions tailored to your business needs
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.45,
-                  delay: index * 0.12,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className="group premium-card p-8 border-2 border-border hover:border-brand-primary hover:shadow-premium-hover transition-all duration-300"
-              >
-                {/* Icon */}
-                <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.gradient} p-0.5 mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
-                    <service.icon className="w-10 h-10 text-brand-primary" />
-                  </div>
-                </div>
-
-                {/* Content */}
-                <h3 className="text-2xl font-bold mb-3 text-text-heading group-hover:text-brand-primary transition-colors">
-                  {service.title}
-                </h3>
-
-                <p className="text-text-muted leading-relaxed mb-6">
-                  {service.description}
-                </p>
-
-                {/* Deliverables */}
-                <div className="space-y-2 mb-6">
-                  {service.deliverables.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-primary flex-shrink-0" />
-                      <span className="text-sm text-text-muted">{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Learn More Link */}
-                <Link href="/contact" className="inline-flex items-center gap-2 text-brand-primary font-semibold group-hover:gap-3 transition-all">
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 3D Interactive Services Experience */}
+      <Services3DExperience services={services3D} autoRotateInterval={5000} />
 
       {/* Technology Stack */}
       <section className="py-12 md:py-20 bg-background-secondary">

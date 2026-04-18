@@ -98,7 +98,7 @@ export default function RootLayout({
         <ScrollProgress />
         <SplashProvider>
           <SimpleMenubar />
-          <main className="min-h-screen pt-16 overflow-x-hidden">
+          <main className="min-h-screen pt-28 overflow-x-hidden">
             {children}
           </main>
           <Footer />

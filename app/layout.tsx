@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import SimpleMenubar from "@/components/SimpleMenubar";
 import Footer from "@/components/Footer";
 import SplashProvider from "@/components/SplashProvider";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -97,8 +97,8 @@ export default function RootLayout({
         <EasterEggs />
         <ScrollProgress />
         <SplashProvider>
-          <Navbar />
-          <main className="min-h-screen pt-20 overflow-x-hidden">
+          <SimpleMenubar />
+          <main className="min-h-screen pt-16 overflow-x-hidden">
             {children}
           </main>
           <Footer />

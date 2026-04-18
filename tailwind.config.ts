@@ -17,7 +17,9 @@ const config: Config = {
 					primary: '#FFFFFF',
 					secondary: '#F9FAFB',
 					card: '#FFFFFF',
+					DEFAULT: 'hsl(var(--background))',
 				},
+				foreground: 'hsl(var(--foreground))',
 				// Brand Color System
 				brand: {
 					primary: '#2B4593',    // Deep Tech Blue
@@ -25,11 +27,38 @@ const config: Config = {
 					hover: '#1E3270',      // Darker blue for hover
 					light: '#3D5AB8',      // Lighter blue variant
 				},
+				// Shadcn UI Colors
+				card: {
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))',
+				},
+				popover: {
+					DEFAULT: 'hsl(var(--popover))',
+					foreground: 'hsl(var(--popover-foreground))',
+				},
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))',
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))',
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))',
+				},
 				// Accent System (for highlights and CTAs)
 				accent: {
 					primary: '#2B4593',
 					secondary: '#E6E2C5',
 					hover: '#1E3270',
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))',
+				},
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))',
 				},
 				// Text System
 				text: {
@@ -41,10 +70,17 @@ const config: Config = {
 				'background-secondary': '#F9FAFB',
 				// Border System
 				border: {
-					DEFAULT: '#E5E7EB',
+					DEFAULT: 'hsl(var(--border))',
 					light: '#F3F4F6',
 					accent: '#2B4593',
 				},
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
+			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

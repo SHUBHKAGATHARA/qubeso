@@ -19,13 +19,6 @@ import {
   Shield,
   Target
 } from "lucide-react";
-import dynamic from "next/dynamic";
-
-// Dynamic import for 3D component (client-side only)
-const Services3DExperience = dynamic(
-  () => import("@/components/3DServicesExperience"),
-  { ssr: false }
-);
 
 // ============================================
 // Premium Animation Variants - Production Ready
@@ -125,14 +118,6 @@ const services = [
     bgColor: "bg-orange-50"
   }
 ];
-
-// Transform services data for 3D component
-const services3D = services.map(service => ({
-  title: service.title,
-  features: service.deliverables,
-  color: service.bgColor,
-  gradient: service.gradient
-}));
 
 const techStack = {
   frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
@@ -253,8 +238,276 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 3D Interactive Services Experience */}
-      <Services3DExperience services={services3D} autoRotateInterval={5000} />
+      {/* Enhanced Service Cards */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-text-heading mb-4">
+              Our <span className="text-brand-primary">Services</span>
+            </h2>
+            <p className="text-lg text-text-muted max-w-2xl mx-auto">
+              Comprehensive solutions tailored to your business needs
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Web Development Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0 }}
+              className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 hover:border-blue-200 transition-all duration-300"
+            >
+              <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                <Code2 className="w-7 h-7 text-blue-600" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                Web Development
+              </h3>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Build powerful, scalable web applications with modern frameworks and cutting-edge technologies.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-sm">Responsive web applications</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-sm">Progressive Web Apps (PWA)</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-sm">E-commerce platforms</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-sm">Custom CMS solutions</span>
+                </div>
+              </div>
+
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ x: 5 }}
+                  className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </Link>
+            </motion.div>
+
+            {/* Mobile App Development Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 hover:border-purple-200 transition-all duration-300"
+            >
+              <div className="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-6">
+                <Smartphone className="w-7 h-7 text-purple-600" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                Mobile App Development
+              </h3>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Native and cross-platform mobile applications that deliver exceptional user experiences.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                  <span className="text-sm">iOS & Android apps</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                  <span className="text-sm">React Native solutions</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                  <span className="text-sm">Flutter applications</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                  <span className="text-sm">App Store deployment</span>
+                </div>
+              </div>
+
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ x: 5 }}
+                  className="inline-flex items-center gap-2 text-purple-600 font-semibold hover:gap-3 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </Link>
+            </motion.div>
+
+            {/* UI/UX Design Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 hover:border-pink-200 transition-all duration-300"
+            >
+              <div className="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center mb-6">
+                <Palette className="w-7 h-7 text-pink-600" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                UI/UX Design
+              </h3>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                User-centered design that combines aesthetics with functionality for intuitive interfaces.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-pink-600 flex-shrink-0" />
+                  <span className="text-sm">User research & testing</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-pink-600 flex-shrink-0" />
+                  <span className="text-sm">Wireframes & prototypes</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-pink-600 flex-shrink-0" />
+                  <span className="text-sm">Design systems</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-pink-600 flex-shrink-0" />
+                  <span className="text-sm">Brand identity</span>
+                </div>
+              </div>
+
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ x: 5 }}
+                  className="inline-flex items-center gap-2 text-pink-600 font-semibold hover:gap-3 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </Link>
+            </motion.div>
+
+            {/* SaaS Development Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 hover:border-teal-200 transition-all duration-300"
+            >
+              <div className="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center mb-6">
+                <Cloud className="w-7 h-7 text-teal-600" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                SaaS Development
+              </h3>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                End-to-end SaaS product development from concept to launch with scalable architecture.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                  <span className="text-sm">Multi-tenant architecture</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                  <span className="text-sm">Subscription management</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                  <span className="text-sm">API development</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                  <span className="text-sm">Cloud infrastructure</span>
+                </div>
+              </div>
+
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ x: 5 }}
+                  className="inline-flex items-center gap-2 text-teal-600 font-semibold hover:gap-3 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </Link>
+            </motion.div>
+
+            {/* Cloud & API Services Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 hover:border-orange-200 transition-all duration-300"
+            >
+              <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-6">
+                <Server className="w-7 h-7 text-orange-600" />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                Cloud & API Services
+              </h3>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Robust backend systems, APIs, and cloud infrastructure for enterprise-grade applications.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                  <span className="text-sm">RESTful & GraphQL APIs</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                  <span className="text-sm">Microservices architecture</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                  <span className="text-sm">Cloud deployment</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                  <span className="text-sm">DevOps automation</span>
+                </div>
+              </div>
+
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ x: 5 }}
+                  className="inline-flex items-center gap-2 text-orange-600 font-semibold hover:gap-3 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Technology Stack */}
       <section className="py-12 md:py-20 bg-background-secondary">
